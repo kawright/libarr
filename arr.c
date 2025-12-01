@@ -5,6 +5,8 @@
 #include <err.h>
 #include <mem.h>
 
+/* ----- STATIC FUNCTIONS ----- */
+
 static Void _qsort_swap(Void **left, Void **right) {
     Void *temp = *left;
     *left = *right;
@@ -37,6 +39,16 @@ static Void _qsort(Arr *arr, CompCb comp_cb, U64 low, U64 high) {
     U64 pivot_index = _qsort_part(arr, comp_cb, low, high);
     _qsort(arr, comp_cb, low, pivot_index - 1);
     _qsort(arr, comp_cb, pivot_index + 1, high);
+}
+
+/* ----- PUBLIC FUNCTIONS ----- */
+
+Void clean_arr(Arr *arr, CleanCb clean_cb) {
+    for (U64 i = 0; i < arr->sz; i++) {
+        clean_cb(get_arr_elem(arr, i, NIL));
+    }
+    arr->sz = 0;
+    free_mem(arr->contents);
 }
 
 Void dim_arr(Arr *arr, U64 sz, Err *err) {

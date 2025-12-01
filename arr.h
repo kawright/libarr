@@ -13,6 +13,9 @@ typedef struct STRUCT_ARR {
     Void    **contents;
 } Arr;
 
+/* Perform cleanup on an 'Arr'. */
+Void clean_arr(Arr *arr, CleanCb clean_cb);
+
 /* Allocate memory to an 'Arr'. Throws MEM. */
 Void dim_arr(Arr *arr, U64 sz, Err *err);
 

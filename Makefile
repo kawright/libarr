@@ -2,7 +2,7 @@
 
 PROJ_NAME := arr
 PROJ_DESC := "array data type"
-PROJ_VER := 1.0
+PROJ_VER := 1.1
 
 # ----- COMPILER CONFIGURATION -----
 

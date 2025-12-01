@@ -1,6 +1,6 @@
-[PROJECT NAME] - [PROJECT DESCRIPTION]
+libarr - array data type
 
-Version Number: 1.0
-Version Date: 2025-12-01 07:32:32
-Build Number: 2
-Build Date: 2025-12-01 07:32:32
+Version Number: 1.1
+Version Date: 2025-12-01 08:10:08
+Build Number: 4
+Build Date: 2025-12-01 08:10:08
