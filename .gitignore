@@ -1,0 +1,7 @@
+# ----- VIM STUFF -----
+
+.*.swp
+
+# ----- BUILD ARTIFACTS -----
+
+build
