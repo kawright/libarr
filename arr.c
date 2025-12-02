@@ -7,33 +7,29 @@
 
 /* ----- STATIC FUNCTIONS ----- */
 
-static Void _qsort_swap(Void **left, Void **right) {
-    Void *temp = *left;
-    *left = *right;
-    *right = temp;
+static Void _qsort_swap(Arr *arr, U64 left, U64 right) {
+    Void *left_obj      = get_arr_elem(arr, left, NIL);
+    Void *right_obj     = get_arr_elem(arr, right, NIL);
+    set_arr_elem(arr, left, right_obj, NIL);
+    set_arr_elem(arr, right, left_obj, NIL);    
 }
 
-static U64 _qsort_part(Arr *arr, CompCb comp_cb, U64 low, U64 high) {
-    Void        *pivot                  = get_arr_elem(arr, low, NIL);
+static U64 _qsort_part(Arr *arr, CompCb comp_cb, I64 low, I64 high) {
+    Void        *pivot                  = get_arr_elem(arr, high, NIL);
     U64         pivot_index             = low;
     Void        *temp_scanned;
-    Void        *temp_at_pivot_index;
-    Void        *temp_last;
     for (U64 j = low; j <= high - 1; j++) {
         temp_scanned            = get_arr_elem(arr, j, NIL);
-        temp_at_pivot_index     = get_arr_elem(arr, pivot_index, NIL); 
-        if(comp_cb(temp_scanned, pivot) >= 0) {
-            _qsort_swap(&temp_scanned, &temp_at_pivot_index);
+        if(comp_cb(temp_scanned, pivot) <= 0) {
+            _qsort_swap(arr, j, pivot_index);
             pivot_index++;
         }
     }
-    temp_at_pivot_index     = get_arr_elem(arr, pivot_index, NIL);
-    temp_last               = get_arr_elem(arr, high, NIL);
-    _qsort_swap(&temp_at_pivot_index, &temp_last);
+    _qsort_swap(arr, pivot_index, high);
     return pivot_index;
 }
 
-static Void _qsort(Arr *arr, CompCb comp_cb, U64 low, U64 high) {
+static Void _qsort(Arr *arr, CompCb comp_cb, I64 low, I64 high) {
     if (low >= high)
         return;
     U64 pivot_index = _qsort_part(arr, comp_cb, low, high);

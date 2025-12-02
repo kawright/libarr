@@ -11,7 +11,7 @@ CC_OPTS := \
 	-Wall \
 	-Werror \
 	-fpic \
-	# -g \
+	-g \
     # -DDEBUG_MODE
 CC_LIBS := \
 	-lerr \
